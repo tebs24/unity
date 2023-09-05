@@ -8,7 +8,7 @@ public class Movimiento : MonoBehaviour
     private Vector3 playerVelocity;
     private bool groundedPlayer;
     public float playerSpeed = 5.0f;
-    private float jumpHeight = 1.0f;
+    public float jumpHeight = 1.0f;
     public float gravityValue = -9.81f;
 
     private void Start()
