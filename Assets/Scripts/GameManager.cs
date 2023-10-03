@@ -9,9 +9,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject playui;
     [SerializeField] GameObject ingameui;
     [SerializeField] TMP_Text contador;
+    [SerializeField] GameObject pauseui;
+
     void Start()
     {
         ingameui.SetActive(false);
+        pauseui.SetActive(false);
         
     }
 
@@ -28,17 +31,31 @@ public class GameManager : MonoBehaviour
         StartCoroutine(Contar());
     }
 
+    public void desactivarui(){
+        ingameui.SetActive(false);
+        pauseui.SetActive(false);
+        playui.SetActive(true);
+        GameManager.activado = true;
+    }
+
     private IEnumerator Contar ()
     {
         int contador = 0;
 
         while(true)
         {
-            Debug.Log(contador);
+            //Debug.Log(contador);
             contador++;
             this.contador.text = "" + contador;
             yield return new WaitForSeconds(1f);
         }
+    }
+
+    public void pausarui(){
+        ingameui.SetActive(false);
+        playui.SetActive(false);
+        pauseui.SetActive(true);
+        GameManager.activado = true;
     }
 }
 
