@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour
         ingameui.SetActive(false);
         pauseui.SetActive(false);
         playui.SetActive(true);
-        GameManager.activado = true;
+        GameManager.activado = false;
     }
 
     private IEnumerator Contar ()
