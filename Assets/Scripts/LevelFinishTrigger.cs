@@ -5,8 +5,7 @@ using UnityEngine.UI;
 
 public class LevelFinishTrigger : MonoBehaviour
 {
-    [SerializeField] GameObject playui;
-    [SerializeField] GameObject ingameui;
+    public Canvas congratsCanvas;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -14,8 +13,7 @@ public class LevelFinishTrigger : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             // Activa el Canvas de "Congrats!"
-            playui.SetActive(true);
-            playui.SetActive(false);
+            congratsCanvas.gameObject.SetActive(true);
         }
     }
 }

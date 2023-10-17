@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Bloque
   - FallBoundary
+  - Moneda
   layers:
   - Default
   - TransparentFX
