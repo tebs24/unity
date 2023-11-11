@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class LevelFinishTrigger : MonoBehaviour
 {
     public Canvas congratsCanvas;
+    private AudioSource audioSource;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -15,5 +16,12 @@ public class LevelFinishTrigger : MonoBehaviour
             // Activa el Canvas de "Congrats!"
             congratsCanvas.gameObject.SetActive(true);
         }
+
+        if (audioSource != null)
+            {
+                audioSource.Stop();
+            }
     }
+
+    
 }
