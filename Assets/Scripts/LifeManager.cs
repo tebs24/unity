@@ -9,7 +9,6 @@ public class LifeManager : MonoBehaviour
     private int currentLives; // Vidas actuales
     private Vector3 respawnPoint; // Punto de reaparición al perder una vida
     private CharacterController characterController;
-    public GameManager gamemanager;
     public GameObject corazon1;
     public GameObject corazon2;
     public GameObject corazon3;

@@ -22,7 +22,7 @@ public class BlockDestroyer : MonoBehaviour
         if (hit.gameObject.CompareTag("Bloque"))
         {
             // Destruye el bloque
-            Destroy(hit.gameObject);
+            //Destroy(hit.gameObject);
 
             // Suma puntos al puntaje
             //score += pointsPerBlock;
