@@ -10,12 +10,14 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject ingameui;
     [SerializeField] TMP_Text contador;
     [SerializeField] GameObject pauseui;
+    public AudioManager audioManager;
+    public TMP_Text textoPuntos;
 
     void Start()
     {
         ingameui.SetActive(false);
         pauseui.SetActive(false);
-        
+        audioManager = FindObjectOfType<AudioManager>();   
     }
 
     // Update is called once per frame
@@ -29,6 +31,11 @@ public class GameManager : MonoBehaviour
         playui.SetActive(false);
         GameManager.activado = true;
         StartCoroutine(Contar());
+         if (audioManager != null)
+        {
+            audioManager.PlayMusic();
+        }
+
     }
 
     public void desactivarui(){
