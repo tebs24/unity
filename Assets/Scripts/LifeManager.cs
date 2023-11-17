@@ -12,6 +12,7 @@ public class LifeManager : MonoBehaviour
     public GameObject corazon1;
     public GameObject corazon2;
     public GameObject corazon3;
+    [SerializeField] private AudioSource sonidoMuerte;
 
 
     private void Start()
@@ -37,6 +38,7 @@ public class LifeManager : MonoBehaviour
         // Si aún quedan vidas, respawn en el punto de reaparición
         if (currentLives > 0)
         {
+            sonidoMuerte.Play();
             Respawn();
             if (currentLives == 2){
                 corazon3.SetActive(false);

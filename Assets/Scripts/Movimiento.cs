@@ -10,6 +10,7 @@ public class Movimiento : MonoBehaviour
     public float playerSpeed = 5.0f;
     public float jumpHeight = 1.0f;
     public float gravityValue = -9.81f;
+    //private AudioSource audioSource;
 
     private void Start()
     {
@@ -38,6 +39,7 @@ public class Movimiento : MonoBehaviour
         if (Input.GetButtonDown("Jump") && groundedPlayer)
         {
             playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
+            //audioSource.Play();
         }
 
         playerVelocity.y += gravityValue * Time.deltaTime;
