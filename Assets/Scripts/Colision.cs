@@ -5,6 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class Colision : MonoBehaviour
 {
+    public LifeManager lifeManager;
+
+    void Start()
+    {
+        
+    }
+
+
     private void OnTriggerEnter(Collider other)
     {
         // Verifica si el objeto que chocó es un enemigo
@@ -13,7 +21,7 @@ public class Colision : MonoBehaviour
             // Si el jugador no está saltando, pierde una vida y reinicia el nivel
             if (!IsJumping())
             {
-                PerderVida();
+                lifeManager.LoseLife();
             }
             // Si el jugador está saltando, destruye el enemigo
             else
@@ -27,12 +35,5 @@ public class Colision : MonoBehaviour
     {
         // Verifica si el jugador está en el suelo o no
         return !GetComponent<CharacterController>().isGrounded;
-    }
-
-    void PerderVida()
-    {
-        // Puedes agregar lógica adicional aquí, como reproducir un sonido o mostrar un efecto
-        // Para este ejemplo, simplemente reinicia el nivel
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

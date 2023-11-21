@@ -11,16 +11,16 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject ingameui;
     [SerializeField] GameObject pauseui;
     [SerializeField] TMP_Text contadort;
-    [SerializeField] TMP_Text TextoContadorM;
-    private int contadorm = 0;
+    public UIManager ui;
     
 
     void Start()
     {
         ingameui.SetActive(false);
         pauseui.SetActive(false);
-        ActualizarContador();
     }
+
+    void Update(){    }
                             
     public void activarui(){
         ingameui.SetActive(true);
@@ -54,24 +54,13 @@ public class GameManager : MonoBehaviour
         // Verifica si el objeto que chocó es el jugador
         if (other.CompareTag("Player"))
         {
-            // Incrementa el contador y actualiza el texto del contador
-            contadorm++;
-            ActualizarContador();
-
             // Desactiva la moneda (puedes destruirla si no necesitas que vuelva a aparecer)
             gameObject.SetActive(false);
+            ui.IncreaseCoins();
+            ui.IncreaseScore(200);
 
             // Puedes agregar aquí lógica adicional, como reproducir un sonido o destruir el objeto chocado
             audioSource.Play(); 
-        }
-    }
-
-    void ActualizarContador()
-    {
-        // Actualiza el texto del contador en el canvas
-        if (TextoContadorM != null)
-        {
-            TextoContadorM.text = " " + contadorm.ToString();
         }
     }
 

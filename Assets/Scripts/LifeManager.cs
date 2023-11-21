@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class LifeManager : MonoBehaviour
 {
@@ -14,8 +15,7 @@ public class LifeManager : MonoBehaviour
     public GameObject corazon3;
     [SerializeField] private AudioSource sonidoMuerte;
 
-
-    private void Start()
+    public void Start()
     {
         characterController = GetComponent<CharacterController>();
         currentLives = maxLives; // Inicializa las vidas al valor máximo
@@ -31,7 +31,7 @@ public class LifeManager : MonoBehaviour
         }
     }
 
-    private void LoseLife()
+    public void LoseLife()
     {
         currentLives--;
 
@@ -52,11 +52,9 @@ public class LifeManager : MonoBehaviour
             // Si se quedó sin vidas, reinicia el nivel o realiza alguna otra acción
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
+    }  
 
-
-    }
-
-    private void Respawn()
+    public void Respawn()
     {
         // Repositiona al personaje en el punto de respawn
         characterController.enabled = false;

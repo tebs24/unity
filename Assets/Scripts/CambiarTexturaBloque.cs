@@ -5,6 +5,8 @@ using UnityEngine;
 public class CambiarTexturaBloque : MonoBehaviour
 {
     public Material nuevoMaterial; // Material con la nueva textura
+    [SerializeField] private AudioSource yahoo;
+    public UIManager ui;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -13,6 +15,8 @@ public class CambiarTexturaBloque : MonoBehaviour
         {
             // Cambia la textura del bloque al material especificado
             CambiarTextura();
+            yahoo.Play();
+            ui.IncreaseScore(500);
         }
     }
 

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemies : MonoBehaviour
+public class EnemigosControlador : MonoBehaviour
 {
     public float velocidadMovimiento = 3f; // Velocidad de movimiento del enemigo
     public Transform puntoInicio; // Punto inicial de movimiento
@@ -11,11 +11,15 @@ public class Enemies : MonoBehaviour
     public float RaycastLength_P = 0.6f;
     private bool moverHaciaFin = true;
     [SerializeField] private AudioSource killEnemySound;
+    public UIManager ui;
+
+    private const string playerTag = "Player";
 
     void Update()
     {
         // Mueve el enemigo entre los puntos de inicio y fin
         MoverEnemigo();
+        PlayerCollisions();
     }
 
     void MoverEnemigo(){
@@ -42,41 +46,22 @@ public class Enemies : MonoBehaviour
     }
 
     void PlayerCollisions(){
-        if (RaycastHitObject(Vector3.right , RaycastLength_P, out RaycastHit hitSides) && hitSides.collider.CompareTag("Player")){
+        if (RaycastHitObject(Vector3.right , RaycastLength_P, out RaycastHit hitSides) && hitSides.collider.CompareTag(playerTag)){
             lifeManager.LoseLife();
             Debug.Log("Kill Player");
         }
-        if (RaycastHitObject(Vector3.left , RaycastLength_P, out hitSides) && hitSides.collider.CompareTag("Player")){
+        if (RaycastHitObject(Vector3.left , RaycastLength_P, out hitSides) && hitSides.collider.CompareTag(playerTag)){
             lifeManager.LoseLife();
             Debug.Log("Kill Player");
-        }         }
+        }
+        if (RaycastHitObject(Vector3.up, RaycastLength_P, out RaycastHit hitUp) && hitUp.collider.CompareTag(playerTag)){
+            Debug.Log("Kill Goomba");
+            gameObject.SetActive(false);
+            killEnemySound.Play();   
+            ui.IncreaseScore(100);     }
 
     bool RaycastHitObject(Vector3 direction, float length, out RaycastHit hit){
         return Physics.Raycast(transform.position, direction, out hit, length);
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        // Verifica si el objeto que chocó es un enemigo
-        if (other.CompareTag("Player"))
-        {
-            // Si el jugador no está saltando, pierde una vida y reinicia el nivel
-            if (!IsJumping())
-            {
-                PlayerCollisions();
-            }
-            // Si el jugador está saltando, destruye el enemigo
-            else
-            {
-                Destroy(other.gameObject);
-                killEnemySound.Play();
-            }
         }
-    }
-
-    bool IsJumping()
-    {
-        // Verifica si el jugador está en el suelo o no
-        return !GetComponent<CharacterController>().isGrounded;
     }
 }
